@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+// import CheckoutPage from '../components/CheckoutPage';
 import {
   useGetOrderDetailsQuery,
   useDeliverOrderMutation,
@@ -127,7 +128,9 @@ const OrderScreen = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {/* PAY ORDER PLACEHOLDER */}
+
+              {/* {Stripe} */}
+
               {loadingDeliver && <Loader />}
 
               {userInfo &&

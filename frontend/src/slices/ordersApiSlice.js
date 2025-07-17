@@ -16,6 +16,13 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    // createPaymentIntent: builder.mutation({
+    //   query: (data) => ({
+    //     url: STRIPE_URL,
+    //     method: 'POST',
+    //     body: data,
+    //   }),
+    // }),
     getMyOrders: builder.query({
       query: () => ({
         url: `${ORDERS_URL}/mine`,
@@ -43,4 +50,5 @@ export const {
   useGetMyOrdersQuery,
   useGetOrdersQuery,
   useDeliverOrderMutation,
+  // useCreatePaymentIntentMutation,
 } = ordersApiSlice;

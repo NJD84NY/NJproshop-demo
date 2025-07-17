@@ -3,17 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-// import { loadStripe } from '@stripe/stripe-js';
 
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { useCreateOrderMutation } from '../slices/ordersApiSlice';
 import { clearCartItems } from '../slices/cartSlice';
-
-// const stripePromise = loadStripe(
-//   'pk_test_51RP3YQDCrz7URzHBCiqwB8ybvpxaLqLPsQveYG6vLPFNnSG01vf9wmvVXFFhhUUtlN223oICNGT3r7Hzj4lJptN3007ZtPNyIg'
-// );
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
@@ -48,27 +43,6 @@ const PlaceOrderScreen = () => {
       console.log(error);
     }
   };
-
-  // const checkoutHandler = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:3000/checkout', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Typa': 'Application/json',
-  //       },
-  //     });
-
-  //     const { id } = await response.json();
-
-  //     const stripe = await stripePromise;
-  //     await stripe.redirectToCheckout({
-  //       sessionId: id,
-  //     });
-  //   } catch (error) {
-  //     toast.error(error);
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <>

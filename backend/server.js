@@ -3,7 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import cookieParser from 'cookie-parser';
-// import Stripe from 'stripe';
+import cors from 'cors';
 
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
@@ -16,11 +16,10 @@ connectDB();
 
 const app = express();
 
-// const stripe = new Stripe(process.env.STRIPE_CLIENT_SECRET);
-
 // user Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // Cookie parser middleware
 app.use(cookieParser());
@@ -29,38 +28,6 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
-
-// app.post('/checkout', async (req, res) => {
-//   const { orderItems, itemsPrice } = req.body;
-
-//   try {
-//     const session = await stripe.checkout.sessions.create({
-//       payment_method_types: ['card'],
-//       line_items: [
-//         {
-//           // Provide the exact Price ID (for example, price_1234) of the product you want to sell
-//           price: { itemsPrice },
-//           quantity: orderItems.quantity,
-//         },
-//       ],
-//       mode: 'payment',
-//       success_url: 'http://localhost:3000/success',
-//       cancel_url: 'http://localhost:3000/canceled',
-//     });
-
-//     return res.json(session);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
-// app.get('/success', (req, res) => {
-//   return res.send('Success');
-// });
-
-// app.get('/canceled', (req, res) => {
-//   return res.send('Canceled');
-// });
 
 const __dirname = path.resolve(); // set __dirname to current directory
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
